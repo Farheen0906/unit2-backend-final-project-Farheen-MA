@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 // @RestController tells Spring: this class handles web requests and sends back JSON, not HTML pages.
 @RestController
@@ -35,4 +36,17 @@ public class UserController {
         return allUsers;
     }
 
+    // Handles: GET http://localhost:8080/api/users/3
+    // Returns one specific user by their id.
+    @GetMapping("/{id}")
+    public User getUserById(@PathVariable int id) {
+        Optional<User> result = userRepository.findById(id);
+
+        if (result.isPresent()) {
+            return result.get();
+        } else {
+            return null;
+        }
+    }
 }
+
