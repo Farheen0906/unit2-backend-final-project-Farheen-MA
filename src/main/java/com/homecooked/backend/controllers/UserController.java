@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 // @RestController tells Spring: this class handles web requests and sends back JSON, not HTML pages.
-RestController
+@RestController
 // Every endpoint in this class starts with /api/users
 @RequestMapping("/api/users")
 
