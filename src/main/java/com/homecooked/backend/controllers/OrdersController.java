@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @RestController
@@ -24,5 +25,10 @@ public class OrdersController {
     @GetMapping
     public List<Orders> getAllOrders() {
         return ordersRepository.findAll();
+    }
+    @GetMapping("/{id}")
+    public Orders getOrderById(@PathVariable int id) {
+        Optional<Orders> result = ordersRepository.findById(id);
+        return result.isPresent() ? result.get() : null;
     }
 }
