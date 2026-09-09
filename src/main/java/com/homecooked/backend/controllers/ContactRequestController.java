@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @RestController
@@ -24,5 +25,10 @@ public class ContactRequestController {
     @GetMapping
     public List<ContactRequest> getAllContactRequests() {
         return contactRequestRepository.findAll();
+    }
+    @GetMapping("/{id}")
+    public ContactRequest getContactRequestById(@PathVariable int id) {
+        Optional<ContactRequest> result = contactRequestRepository.findById(id);
+        return result.isPresent() ? result.get() : null;
     }
 }
