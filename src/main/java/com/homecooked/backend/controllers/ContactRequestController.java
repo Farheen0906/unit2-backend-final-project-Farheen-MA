@@ -6,6 +6,7 @@ import com.homecooked.backend.repositories.ContactRequestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 
 
 @RestController
@@ -19,5 +20,9 @@ public class ContactRequestController {
     @PostMapping
     public ContactRequest createContactRequest(@RequestBody ContactRequest contactRequest) {
         return contactRequestRepository.save(contactRequest);
+    }
+    @GetMapping
+    public List<ContactRequest> getAllContactRequests() {
+        return contactRequestRepository.findAll();
     }
 }
