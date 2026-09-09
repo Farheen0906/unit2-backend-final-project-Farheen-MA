@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 public class Orders{
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     private int customerId;

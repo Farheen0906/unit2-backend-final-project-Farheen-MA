@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+
 @RestController
 @RequestMapping("/api/orders")
 
@@ -24,5 +25,4 @@ public class OrdersController {
     public List<Orders> getAllOrders() {
         return ordersRepository.findAll();
     }
-
 }

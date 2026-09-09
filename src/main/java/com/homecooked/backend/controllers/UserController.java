@@ -48,5 +48,22 @@ public class UserController {
             return null;
         }
     }
+    // UPDATE
+    // Handles: PUT http://localhost:8080/api/users/1
+    // Takes the id from the URL and the new data from the request body, then saves it.
+    @PutMapping("/{id}")
+    public User updateUser(@PathVariable int id, @RequestBody User updatedUser) {
+        updatedUser.setId(id);
+        User savedUser = userRepository.save(updatedUser);
+        return savedUser;
+    }
+
+    // DELETE
+    // Handles: DELETE http://localhost:8080/api/users/1
+    // Removes the user with that id from the database.
+    @DeleteMapping("/{id}")
+    public void deleteUser(@PathVariable int id) {
+        userRepository.deleteById(id);
+    }
 }
 

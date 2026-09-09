@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 public class ContactRequest {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     private String name;

@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 public class Meal {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     private int chefId;
@@ -17,7 +17,7 @@ public class Meal {
     private double price;
     private int serves;
     private String imageUrl;
-    private boolean isAvailable;
+    private boolean available;
 
     public Meal() {}
 
@@ -94,10 +94,10 @@ public class Meal {
     }
 
     public boolean isAvailable() {
-        return isAvailable;
+        return available;
     }
 
     public void setAvailable(boolean available) {
-        isAvailable = available;
+        this.available = available;
     }
 }
