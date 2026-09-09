@@ -36,4 +36,8 @@ public class ContactRequestController {
         updated.setId(id);
         return contactRequestRepository.save(updated);
     }
+    @DeleteMapping("/{id}")
+    public void deleteContactRequest(@PathVariable int id) {
+        contactRequestRepository.deleteById(id);
+    }
 }
