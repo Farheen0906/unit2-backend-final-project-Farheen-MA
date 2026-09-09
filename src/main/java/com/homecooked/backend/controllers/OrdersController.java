@@ -31,4 +31,9 @@ public class OrdersController {
         Optional<Orders> result = ordersRepository.findById(id);
         return result.isPresent() ? result.get() : null;
     }
+    @PutMapping("/{id}")
+    public Orders updateOrder(@PathVariable int id, @RequestBody Orders updatedOrder) {
+        updatedOrder.setId(id);
+        return ordersRepository.save(updatedOrder);
+    }
 }
