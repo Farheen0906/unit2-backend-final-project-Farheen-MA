@@ -36,4 +36,8 @@ public class OrdersController {
         updatedOrder.setId(id);
         return ordersRepository.save(updatedOrder);
     }
+    @DeleteMapping("/{id}")
+    public void deleteOrder(@PathVariable int id) {
+        ordersRepository.deleteById(id);
+    }
 }
