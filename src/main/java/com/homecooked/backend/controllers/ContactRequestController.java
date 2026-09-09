@@ -31,4 +31,9 @@ public class ContactRequestController {
         Optional<ContactRequest> result = contactRequestRepository.findById(id);
         return result.isPresent() ? result.get() : null;
     }
+    @PutMapping("/{id}")
+    public ContactRequest updateContactRequest(@PathVariable int id, @RequestBody ContactRequest updated) {
+        updated.setId(id);
+        return contactRequestRepository.save(updated);
+    }
 }
