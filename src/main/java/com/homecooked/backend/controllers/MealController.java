@@ -10,7 +10,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/meals")
-
+@CrossOrigin(origins = "http://localhost:5173")
 public class MealController {
 
     @Autowired

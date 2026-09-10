@@ -13,7 +13,7 @@ import java.util.Optional;
 // Every endpoint in this class starts with /api/users
 @RequestMapping("/api/users")
 
-
+@CrossOrigin(origins = "http://localhost:5173")
 public class UserController {
 
     // @Autowired tells Spring: give me a ready-to-use UserRepository
