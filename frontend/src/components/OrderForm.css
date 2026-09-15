@@ -1,0 +1,63 @@
+/* ── FORM ── */
+.checkout-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.checkout-form-section {
+  background:whitesmoke;
+  border-radius: 20px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.checkout-form-heading {
+  font-size: 20px;
+  color:rgb(177, 95, 95);
+  padding-bottom: 12px;
+  border-bottom: 2px solid rgb(183, 112, 112);
+}
+
+.checkout-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+
+/* Re-using form-field styles from Contact.css */
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-field label {
+  font-size: 13px;
+  font-weight: 500;
+  color:maroon;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.form-field input,
+.form-field select,
+.form-field textarea {
+  padding: 12px 14px;
+  border: 1.5px solid rgb(204, 147, 147);
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: maroon;
+  background:rgb(230, 224, 224);
+  resize: vertical;
+}
+
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus {
+ border-color:rgb(181, 97, 13);
+  outline: none;/* Removes the default browser glow */
+}
