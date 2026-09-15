@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Button from "./Button";
 import "./OrderForm.css";
 
-function OrderForm({clearCart}) {
+function OrderForm({ clearCart, cart, cartTotal }){
   //Form state
   const [formData, setFormData] = useState({
     fullName: '',
@@ -18,10 +18,68 @@ function OrderForm({clearCart}) {
     const { name, value } = event.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
-  const handlePlaceOrder = (event) => {
+  // const handlePlaceOrder = (event) => {
+  //   event.preventDefault();
+  //   clearCart();
+  //   navigate("/confirmation");
+  // };
+  const handlePlaceOrder = async (event) => {
     event.preventDefault();
-    clearCart();
-    navigate("/confirmation");
+
+    try {
+      const now = new Date();
+      const createdAt = now.toISOString().slice(0, 19);
+
+      const orderPayload = {
+        customerId: 1,
+        createdAt: createdAt,
+        contactName: formData.fullName,
+        contactPhone: formData.phone,
+        contactEmail: formData.email,
+        deliveryDate: formData.date,
+        deliveryOption: formData.deliveryOption,
+        specialRequest: formData.requests,
+        total: cartTotal
+      };
+      console.log("Sending order:", orderPayload);
+
+      // Step 1: Send the order to the server
+      const orderResponse = await fetch('http://localhost:8080/api/orders', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(orderPayload)
+      });
+    // Step 2: Turn the response into a usable JS object
+      const savedOrder = await orderResponse.json();
+      console.log("Order saved:", savedOrder);
+
+      // Step 3: Save each cart item one at a time
+      for (let i = 0; i < cart.length; i++) {
+        const cartItem = cart[i];
+
+        const orderItemPayload = {
+          orderId: savedOrder.id,
+          mealId: cartItem.id,
+          quantity: cartItem.quantity,
+          price: cartItem.price
+        };
+        console.log("Saving order item:", orderItemPayload);
+
+        await fetch('http://localhost:8080/api/order-items', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(orderItemPayload)
+        });
+      }
+
+      // Step 4: Everything worked - clear the cart and go to confirmation page
+      clearCart();
+      navigate(`/confirmation/${savedOrder.id}`);
+
+    } catch (error) {
+      // error handler if something goes wrong
+      console.log("Something went wrong placing the order:", error);
+    }
   };
 
   return (

@@ -18,14 +18,34 @@ function Contact() {
         setFormData((prev) => ({ ...prev, [name]: value }));
     };
 
-    // Creating a function to handle form submission
+    // // Creating a function to handle form submission
+    // const handleSubmit = (event) => {
+    //     event.preventDefault(); //To prevent the default behaviour(page reload)
+    //     //Show the success confirmation message
+    //     setSubmitted(true);
+    //     //reset the form fields
+    //     setFormData({ name: '', email: '', phone: '', queryType: '', message: '' });
+    // };
     const handleSubmit = (event) => {
-        event.preventDefault(); //To prevent the default behaviour(page reload)
-        //Show the success confirmation message
-        setSubmitted(true);
-        //reset the form fields
-        setFormData({ name: '', email: '', phone: '', queryType: '', message: '' });
+        event.preventDefault();
+
+        const contactPayload = {
+            name: formData.name,
+            email: formData.email,
+            phone: formData.phone,
+            message: formData.message
+        };
+
+        fetch('http://localhost:8080/api/contact', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(contactPayload)
+        }).then(() => {
+            setSubmitted(true);
+            setFormData({ name: '', email: '', phone: '', queryType: '', message: '' });
+        });
     };
+
     return (
         <div className='contact-page'>
             <div className='contact-page-header'>

@@ -94,7 +94,8 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/menu" element={<Menu addToCart={addToCart} />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/confirmation" element={<Confirmation />} />
+          {/*<Route path="/confirmation" element={<Confirmation />} />*/}
+          <Route path="/confirmation/:orderId" element={<Confirmation />} />
           <Route path="/checkout" element={<Checkout cart={cart}
             removeFromCart={removeFromCart}
             updateQuantity={updateQuantity}
