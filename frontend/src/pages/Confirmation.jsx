@@ -10,6 +10,7 @@ function Confirmation() {
     const [editedRequest, setEditedRequest] = useState('');
     const [cancelled, setCancelled] = useState(false);
     const [updateMessage, setUpdateMessage] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
 
     useEffect(() => {
         if (!orderId) return;
@@ -48,6 +49,7 @@ function Confirmation() {
             setUpdateMessage('Special request updated!');
         } catch (error) {
             console.log("Something went wrong updating the order:", error);
+            setErrorMessage('Something went wrong sending your message. Please try again.');
         }
     };
 

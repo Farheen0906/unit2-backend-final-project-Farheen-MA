@@ -1,24 +1,17 @@
-//Component to display the Contact Form 
-//Uses useState for each form field
-
 import { useState } from 'react';
 import './Contact.css';
 
 function Contact() {
 
-    //Using useState to manage the form data  
-    const [formData, setFormData] = useState({ name: '', email: '', phone: '', queryType: '', message: '' });
-
-    //State to track whether the form was successfully submitted
+    const [formData, setFormData] = useState({ name: '', email: '', phone: '', message: '' });
     const [submitted, setSubmitted] = useState(false);
+    const [errorMessage, setErrorMessage] = useState('');
 
-    //Creating a callback function to handle the input changes
     const handleChange = (event) => {
         const { name, value } = event.target;
         setFormData((prev) => ({ ...prev, [name]: value }));
     };
 
-    // Creating a function to handle form submission
     const handleSubmit = async (event) => {
         event.preventDefault();
 
@@ -35,16 +28,20 @@ function Contact() {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(contactPayload)
             });
+
             if (!response.ok) {
                 throw new Error('Server responded with an error');
             }
+
+            setErrorMessage('');
             setSubmitted(true);
-            setFormData({ name: '', email: '', phone: '', queryType: '', message: '' });
+            setFormData({ name: '', email: '', phone: '', message: '' });
         } catch (error) {
             console.log('Something went wrong submitting the contact form:', error);
             setErrorMessage('Something went wrong sending your message. Please try again.');
         }
     };
+
     return (
         <div className='contact-page'>
             <div className='contact-page-header'>
@@ -52,10 +49,8 @@ function Contact() {
                 <p>Please leave us a message, if you have any question or want to place a custom order!</p>
             </div>
             <div className='contact-page-layout'>
-                {/* Form */}
                 <div className='contact-form-wrapper'>
                     <h2 className='contact-form-title'>Submit a Request</h2>
-                    {/* Conditional rendering: display success message OR the form */}
                     {submitted ? (
                         <div className='contact-success'>
                             <h3>✅Message Sent!</h3>
@@ -63,6 +58,8 @@ function Contact() {
                         </div>
                     ) : (
                         <form onSubmit={handleSubmit} className='contact-form'>
+
+                            {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
 
                             <div className='form-field'>
                                 <label>Name:</label>
@@ -77,22 +74,12 @@ function Contact() {
                                 <input type="text" id="phone" name="phone" value={formData.phone} onChange={handleChange} placeholder='+1(444)555-0000' />
                             </div>
                             <div className='form-field'>
-                                <label>Query Type:</label>
-                                <select id="queryType" name="queryType" value={formData.queryType} onChange={handleChange} required>
-                                    <option value="">Select a query type</option>
-                                    <option value="order">Place a custom order</option>
-                                    <option value="inquiry">Order Inquiry</option>
-                                    <option value="dietary">Dietary Questions</option>
-                                    <option value="other">Other</option>
-                                </select>
-                            </div>
-                            <div className='form-field'>
                                 <label>Message:</label>
                                 <textarea id="message" name="message" value={formData.message}
-                                    onChange={handleChange}
-                                    placeholder="Type your message here!!!!!"
-                                    rows={5}
-                                    required />
+                                          onChange={handleChange}
+                                          placeholder="Type your message here!!!!!"
+                                          rows={5}
+                                          required />
                             </div>
                             <button type="submit" className='form-submit-btn'>Submit</button>
                         </form>
