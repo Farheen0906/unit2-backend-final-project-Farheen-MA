@@ -81,7 +81,7 @@ function OrderForm({ clearCart, cart, cartTotal }){
       console.log("Something went wrong placing the order:", error);
     }
   };
-  const today = new Date().toISOString().split('T')[0];
+  const today = new Date().toLocaleDateString('en-CA');
   return (
     <form onSubmit={handlePlaceOrder} className="checkout-form">
       <div className="checkout-form-section">
