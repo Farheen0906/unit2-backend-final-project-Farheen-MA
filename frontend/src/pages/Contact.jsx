@@ -18,15 +18,8 @@ function Contact() {
         setFormData((prev) => ({ ...prev, [name]: value }));
     };
 
-    // // Creating a function to handle form submission
-    // const handleSubmit = (event) => {
-    //     event.preventDefault(); //To prevent the default behaviour(page reload)
-    //     //Show the success confirmation message
-    //     setSubmitted(true);
-    //     //reset the form fields
-    //     setFormData({ name: '', email: '', phone: '', queryType: '', message: '' });
-    // };
-    const handleSubmit = (event) => {
+    // Creating a function to handle form submission
+    const handleSubmit = async (event) => {
         event.preventDefault();
 
         const contactPayload = {
@@ -36,16 +29,22 @@ function Contact() {
             message: formData.message
         };
 
-        fetch('http://localhost:8080/api/contact', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(contactPayload)
-        }).then(() => {
+        try {
+            const response = await fetch('http://localhost:8080/api/contact', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(contactPayload)
+            });
+            if (!response.ok) {
+                throw new Error('Server responded with an error');
+            }
             setSubmitted(true);
             setFormData({ name: '', email: '', phone: '', queryType: '', message: '' });
-        });
+        } catch (error) {
+            console.log('Something went wrong submitting the contact form:', error);
+            setErrorMessage('Something went wrong sending your message. Please try again.');
+        }
     };
-
     return (
         <div className='contact-page'>
             <div className='contact-page-header'>
