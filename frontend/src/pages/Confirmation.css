@@ -18,3 +18,115 @@
   font-size: 20px;
   color: rgb(195, 85, 85);
 }
+
+
+
+
+
+
+
+
+.order-confirmation-page {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.order-confirmation-title {
+  text-align: center;
+  color: #8b1a1a;
+}
+
+.order-confirmation-subtitle {
+  text-align: center;
+  color: #b05c5c;
+  margin-bottom: 30px;
+}
+
+.order-items-card,
+.order-meta-card,
+.order-actions-card {
+  background-color: #fff;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.order-item-row {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 10px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.order-item-image {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.order-item-details {
+  flex: 1;
+}
+
+.order-item-title {
+  font-weight: 600;
+  margin: 0;
+}
+
+.order-item-qty {
+  color: #999;
+  font-size: 13px;
+  margin: 2px 0 0;
+}
+
+.order-item-price {
+  font-weight: 600;
+}
+
+.order-total-row {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 700;
+  font-size: 18px;
+  padding-top: 15px;
+  margin-top: 5px;
+}
+
+.update-request-form textarea {
+  width: 100%;
+  margin: 8px 0;
+}
+
+.update-btn {
+  background-color: #8b1a1a;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.update-message {
+  color: green;
+  margin-top: 8px;
+}
+
+.cancel-btn {
+  margin-top: 15px;
+  background-color: white;
+  color: #b02a2a;
+  border: 1.5px solid #b02a2a;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.cancel-btn:hover {
+  background-color: #fdecec;
+}
