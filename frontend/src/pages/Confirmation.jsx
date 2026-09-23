@@ -165,7 +165,6 @@ function Confirmation() {
                 <p><strong>Delivery option:</strong> {order.deliveryOption}</p>
                 <p><strong>Special request:</strong> {order.specialRequest || '(none)'}</p>
             </div>
-
             <div className="order-actions-card">
                 <form onSubmit={handleUpdateRequest} className="update-request-form">
                     <label>Edit special request:</label>
