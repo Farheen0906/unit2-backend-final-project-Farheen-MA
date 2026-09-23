@@ -80,7 +80,7 @@ function App() {
     cartCount += cart[i].quantity;
     cartSubtotal += cart[i].price * cart[i].quantity;
   }
-  const serviceFee = 20;
+  const serviceFee = 5;
   const cartTotal = cartSubtotal + serviceFee;
 
 
