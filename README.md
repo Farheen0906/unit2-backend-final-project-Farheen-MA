@@ -85,6 +85,7 @@ https://docs.google.com/document/d/1maoKlocckox_M7gQnwgrFnF13XzR42_Qfu7FBZpctqk/
 The database consists of 5 tables: User, Meal, Orders, OrderItem, and ContactRequest.
 
 Unsolved Problems & Future Features:
+
 1.Single-chef design: The app currently assumes one home cook managing the whole menu (chefId is hardcoded).
 Supporting multiple independent chefs would require meaningful changes to how meals and orders are filtered and displayed.
 
