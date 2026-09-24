@@ -55,7 +55,6 @@ function Confirmation() {
                 setItemsToShow(combined);
 
             } catch (error) {
-                console.log("Something went wrong loading the order:", error);
                 setErrorMessage('Could not load your order details.');
             }
         }
@@ -68,7 +67,6 @@ function Confirmation() {
 
         try {
             const updatedOrder = { ...order, specialRequest: editedRequest };
-            console.log("Updating order to:", updatedOrder);
 
             const response = await fetch(`http://localhost:8080/api/orders/${orderId}`, {
                 method: 'PUT',
@@ -84,7 +82,6 @@ function Confirmation() {
             setOrder(data);
             setUpdateMessage('Special request updated!');
         } catch (error) {
-            console.log("Something went wrong updating the order:", error);
             setUpdateMessage('Something went wrong updating your request. Please try again.');
         }
     };
@@ -101,7 +98,6 @@ function Confirmation() {
 
             setCancelled(true);
         } catch (error) {
-            console.log("Something went wrong cancelling the order:", error);
             setUpdateMessage('Failed to cancel the order. Please try again.');
         }
     };

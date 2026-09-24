@@ -5,25 +5,25 @@ import './Menu.css';
 function Menu({ addToCart }) {
   //props : addToCart function from App.jsx
     const [menuItems, setMenuItems] = useState([]);
-    const [selectedCategory, setSelectedCategory] = useState('All');
+    const [selectedCategory, setSelectedCategory] = useState('All')
+    const [menuError, setMenuError] = useState('');
 
     useEffect(() => {
         async function getMeals() {
             try {
                 // Step 1: Wait for the fetch to finish
                 const response = await fetch('http://localhost:8080/api/meals');
-
+                if (!response.ok) {
+                    throw new Error('Server could not load the menu');
+                }
                 // Step 2: Wait for the response to be turned into JSON
                 const data = await response.json();
 
-                // Step 3: Just checking what we got back
-                console.log(data);
-
-                // Step 4: Save it into state so it shows up on the page
+                // Step 3: Save it into state so it shows up on the page
                 setMenuItems(data);
             } catch (error) {
-                // If anything goes wrong, log it
-                console.log('Something went wrong:', error);
+                // If anything goes wrong, handling it
+                setMenuError('Could not load the menu. Please try refreshing the page.');
             }
         }
         getMeals();

@@ -42,7 +42,7 @@ function OrderForm({ clearCart, cart, cartTotal }){
         specialRequest: formData.requests,
         total: cartTotal
       };
-      console.log("Sending order:", orderPayload);
+
 
       // Step 1: Send the order to the server
       const orderResponse = await fetch('http://localhost:8080/api/orders', {
@@ -52,7 +52,6 @@ function OrderForm({ clearCart, cart, cartTotal }){
       });
     // Step 2: Turn the response into a usable JS object
       const savedOrder = await orderResponse.json();
-      console.log("Order saved:", savedOrder);
 
       // Step 3: Save each cart item one at a time
       for (let i = 0; i < cart.length; i++) {
@@ -64,13 +63,15 @@ function OrderForm({ clearCart, cart, cartTotal }){
           quantity: cartItem.quantity,
           price: cartItem.price
         };
-        console.log("Saving order item:", orderItemPayload);
 
-        await fetch('http://localhost:8080/api/order-items', {
+        const itemResponse =  await fetch('http://localhost:8080/api/order-items', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(orderItemPayload)
         });
+        if (!itemResponse.ok) {
+          throw new Error('Server could not save an order item');
+        }
       }
 
       // Step 4: Everything worked - clear the cart and go to confirmation page
@@ -79,9 +80,10 @@ function OrderForm({ clearCart, cart, cartTotal }){
 
     } catch (error) {
       // error handler if something goes wrong
-      console.log("Something went wrong placing the order:", error);
+      setOrderError('Something went wrong placing your order. Please try again.');
     }
   };
+
   const today = new Date().toLocaleDateString('en-CA');
   return (
       <>
