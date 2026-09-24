@@ -19,11 +19,6 @@ function OrderForm({ clearCart, cart, cartTotal }){
     const { name, value } = event.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
-  // const handlePlaceOrder = (event) => {
-  //   event.preventDefault();
-  //   clearCart();
-  //   navigate("/confirmation");
-  // };
   const handlePlaceOrder = async (event) => {
     event.preventDefault();
 
