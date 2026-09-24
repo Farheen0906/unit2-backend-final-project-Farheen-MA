@@ -21,7 +21,7 @@ function Confirmation() {
                 // Step 1: getting the order itself
                 const orderResponse = await fetch(`http://localhost:8080/api/orders/${orderId}`);
                 const orderData = await orderResponse.json();
-                console.log("Order loaded:", orderData);
+                
 
                 setOrder(orderData);
                 setEditedRequest(orderData.specialRequest || '');
