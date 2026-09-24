@@ -14,13 +14,13 @@ function NavBar({ cartCount }) {
 
 </div>
       {/* Navigation bar */}
-      <div className='navbar-links'>
+      <nav className='navbar-links'>
         <Link to="/" className='nav-link'>Home</Link>
         <Link to="/menu" className='nav-link'>Menu</Link>
         <Link to="/about" className='nav-link'>About</Link>
         <Link to="/checkout" className='nav-link'>Checkout</Link>
         <Link to="/contact" className='nav-link'>Contact</Link>
-      </div>
+      </nav>
       {/* Cart Button */}
       <Link to="/checkout">
         <button className='nav-cart-btn' >
