@@ -13,8 +13,10 @@ function MenuCard({ item, addToCart }) {
   return (
     <div className='menu-card'>
       <div className='menu-card-image-wrapper'>
-        <img src={item.image} alt={item.title} className="menu-card-image" />
-        {/*category tag shown on the image */}
+        {/*<img src={item.image} alt={item.title} className="menu-card-image" />*/}
+        {/*  use item.image if it exists and isn't empty, otherwise fall back to this placeholder image URL.*/}
+          <img src={item.image || 'https://placehold.co/400x300?text=No+Image'} alt={item.title} className="menu-card-image" />
+          {/*category tag shown on the image */}
         <span className='menu-card-category-tag'>{item.category}</span>
       </div>
 

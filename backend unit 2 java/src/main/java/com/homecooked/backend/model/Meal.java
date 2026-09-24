@@ -10,13 +10,13 @@ public class Meal {
     private int id;
 
     private int chefId;
-    private String name;
-    private String description;
+    private String title;
+    private String about;
     private String category;
     private String ingredients;
     private double price;
     private int serves;
-    private String imageUrl;
+    private String image;
     private boolean available;
 
     public Meal() {}
@@ -37,20 +37,20 @@ public class Meal {
         this.chefId = chefId;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public String getDescription() {
-        return description;
+    public String getAbout() {
+        return about;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setAbout(String about) {
+        this.about = about;
     }
 
     public String getCategory() {
@@ -85,12 +85,12 @@ public class Meal {
         this.serves = serves;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
+    public String getImage() {
+        return image;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public boolean isAvailable() {

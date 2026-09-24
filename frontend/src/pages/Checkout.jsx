@@ -13,7 +13,7 @@ function Checkout({ cart, removeFromCart, updateQuantity, clearCart,
       <div className="checkout-page-layout">
         {/* Left column - contact form */}
         <div className="checkout-form">
-          <OrderForm clearCart={clearCart}/>
+            <OrderForm clearCart={clearCart} cart={cart} cartTotal={cartTotal} />
         </div>
         <div className="checkout-body">
           {cart.length === 0 ? (
