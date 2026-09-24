@@ -93,7 +93,6 @@ Supporting multiple independent chefs would require meaningful changes to how me
 
 3.Authentication is not yet implemented: There is no login page in the current version.
  every order is saved under a placeholder customer ID rather than a real logged-in user.
- A backend login endpoint exists, but it is not yet connected to the frontend.
 
 4.Chef meal management dashboard: Once authentication exists, a logged-in home chef should have their
 own dashboard to add, edit, and delete their meals directly through the UI, rather than the menu being populated manually through Postman or a SQL script as it is now.
