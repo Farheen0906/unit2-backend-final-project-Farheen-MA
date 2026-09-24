@@ -13,22 +13,23 @@ function OrderForm({ clearCart, cart, cartTotal }){
     deliveryOption: '',
     requests: ''
   });
+  const [cartError, setCartError] = useState('');
   const navigate = useNavigate();
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
-  // const handlePlaceOrder = (event) => {
-  //   event.preventDefault();
-  //   clearCart();
-  //   navigate("/confirmation");
-  // };
   const handlePlaceOrder = async (event) => {
     event.preventDefault();
 
+    if (cart.length === 0) {
+      setCartError('Your cart is empty. Please add at least one item before placing an order.');
+      return;
+    }
+    setCartError('');
     try {
       const now = new Date();
-      const createdAt = now.toISOString().slice(0, 19);
+      const createdAt = now.toLocaleString('sv-SE').replace(' ', 'T');
 
       const orderPayload = {
         customerId: 1,
@@ -81,8 +82,10 @@ function OrderForm({ clearCart, cart, cartTotal }){
       console.log("Something went wrong placing the order:", error);
     }
   };
-
+  const today = new Date().toLocaleDateString('en-CA');
   return (
+      <>
+      {cartError && <p style={{ color: 'red' }}>{cartError}</p>}
     <form onSubmit={handlePlaceOrder} className="checkout-form">
       <div className="checkout-form-section">
         <h2 className="checkout-form-heading">Contact Information</h2>
@@ -132,7 +135,7 @@ function OrderForm({ clearCart, cart, cartTotal }){
               name="date"
               value={formData.date}
               onChange={handleChange}
-              min="2026-04-23"
+              min={today}
               required />
           </div>
 
@@ -169,6 +172,7 @@ function OrderForm({ clearCart, cart, cartTotal }){
       <Button type="submit" className="checkout-btn" text="Place Order" />
 
     </form>
+      </>
   );
 }
 export default OrderForm;
